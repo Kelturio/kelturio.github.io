@@ -18,10 +18,15 @@ body {
 
 canvas {
   display: block;
-  vertical-align: bottom;
 }
 
 /* ---- particles.js container ---- */
+#particles-js {
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
 
 #particles-js1, #particles-js2, #particles-js3 {
   position: fixed;
@@ -31,13 +36,10 @@ canvas {
   height: 100%;
   z-index: 0;
   background-color: #00000000;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
 }
 /* ---- matrix ---- */
 #matrix {
+  position: relative;
   z-index: 10;
   background-color: #000000;
 }
