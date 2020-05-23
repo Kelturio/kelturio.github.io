@@ -28,7 +28,7 @@ canvas {
   background-position: 50% 50%;
 }
 
-#particles-js1, #particles-js2, #particles-js3 {
+#particleTriangle, #particleCircle, #particleStar {
   position: fixed;
   top: 0;
   left: 0;

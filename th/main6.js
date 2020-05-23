@@ -12,6 +12,15 @@
     }
 
     const akk = {
+        init() {
+            console.log("init")
+            this.loadCss("https://kelturio.github.io/th/style5.css")
+            this.addPathsToRequire()
+            require(["lodash", "sugar"], (lodash) => {
+                console.log("lodash, sugar ready", [this, lodash])
+                this.particle.init()
+            })
+        },
         cfg: {
             paths,
         },
@@ -28,20 +37,16 @@
                 require(["particleCfgCircle1"], (cfg) => {
                     console.log("particleCfgCircle ready", [this, cfg])
                     this.cfg.circle = cfg
+                    akk.addDiv(document.body, "particleCircle")
+                    particlesJS("particleCircle", this.cfg.triangle);
                 })
                 require(["particleCfgStar1"], (cfg) => {
                     console.log("particleCfgStar ready", [this, cfg])
                     this.cfg.star = cfg
+                    akk.addDiv(document.body, "particleStar")
+                    particlesJS("particleStar", this.cfg.triangle);
                 })
             }
-        },
-        init() {
-            console.log("init")
-            this.addPathsToRequire()
-            require(["lodash", "sugar"], (lodash) => {
-                console.log("lodash, sugar ready", [this, lodash])
-                this.particle.init()
-            })
         },
         addPathsToRequire() {
             console.log('addPathsToRequire', this)
@@ -49,11 +54,18 @@
                 paths: this.cfg.paths,
             })
         },
+        loadCss(url) {
+            var link = document.createElement("link");
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            link.href = url;
+            document.getElementsByTagName("head")[0].appendChild(link);
+        },
         addDiv(target, id) {
             console.log('addDiv', this)
             var newDiv = document.createElement("div");
-            var t = document.createTextNode("This is a paragraph.");
-            newDiv.appendChild(t);
+            //var t = document.createTextNode("This is a paragraph.");
+            //newDiv.appendChild(t);
             newDiv.id = id
             target["appendChild"](newDiv);
         },
