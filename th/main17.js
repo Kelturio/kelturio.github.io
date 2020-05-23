@@ -51,7 +51,7 @@
         matrix: {
             init() {
                 console.log("matrix.init")
-                this.addCanvas(document.body, "matrixCanvas")
+                akk.addCanvas(document.body, "matrixCanvas")
             },
         },
         addPathsToRequire() {
