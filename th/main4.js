@@ -19,13 +19,18 @@
             cfg: {},
             init() {
                 console.log("particle.init")
+                require(["particleCfgTriangle1"], (cfg) => {
+                    console.log("particleCfgTriangle ready", [this, cfg])
+                    this.cfg.triangle = cfg
+                })
             }
         },
         init() {
             console.log("init")
             this.addPathsToRequire()
-            require(["lodash", "sugar"], (lodash, sugar) => {
-                console.log("lodash, sugar ready", [this, lodash, sugar])
+            require(["lodash", "sugar"], (lodash) => {
+                console.log("lodash, sugar ready", [this, lodash])
+                this.particle.init()
             })
         },
         addPathsToRequire() {
