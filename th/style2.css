@@ -20,6 +20,11 @@ canvas {
   display: block;
 }
 
+#xkcd, #hackerman {
+  position: relative;
+  z-index: 10;
+}
+
 /* ---- particles.js container ---- */
 #particles-js {
   background-image: url("");

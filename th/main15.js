@@ -15,10 +15,12 @@
     const akk = {
         init() {
             console.log("init")
-            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style.css")
+            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style2.css")
             this.addPathsToRequire()
             require(["lodash", "sugar"], (lodash) => {
                 console.log("lodash, sugar ready", [this, lodash])
+                this.addImg(document.body, "xkcd", "https://i.imgur.com/8rH20Pn.png")
+                this.addImg(document.body, "hackerman", "https://i.giphy.com/media/RyXVu4ZW454IM/giphy.gif")
                 this.particle.init()
             })
         },
@@ -60,23 +62,26 @@
             })
         },
         loadCss(url) {
-            var link = document.createElement("link");
-            link.type = "text/css";
-            link.rel = "stylesheet";
-            link.href = url;
-            document.getElementsByTagName("head")[0].appendChild(link);
+            var link = document.createElement("link")
+            link.type = "text/css"
+            link.rel = "stylesheet"
+            link.href = url
+            document.getElementsByTagName("head")[0].appendChild(link)
         },
         addDiv(target, id) {
             console.log('addDiv', this)
-            var newDiv = document.createElement("div");
+            var newDiv = document.createElement("div")
             //var t = document.createTextNode("This is a paragraph.");
             //newDiv.appendChild(t);
             newDiv.id = id
-            target["appendChild"](newDiv);
+            target["appendChild"](newDiv)
         },
-        startParticleAnim() {
-            console.log('startParticleAnim', this)
-            particlesJS("particles-js3", "");
+        addImg(target, id, src) {
+            console.log('addImg', this)
+            var img = document.createElement("img")
+            img.id = id
+            img.src = src
+            target["appendChild"](img)
         },
     }
 
