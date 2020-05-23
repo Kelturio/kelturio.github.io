@@ -9,7 +9,7 @@
         'lodash': ['https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min', ],
         'ramda': ['https://cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min', ],
         'sugar': ['https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min', ],
-        'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js', ],
+        'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min', ],
     }
 
     const akk = {
