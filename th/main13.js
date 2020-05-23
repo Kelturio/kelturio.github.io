@@ -15,7 +15,7 @@
     const akk = {
         init() {
             console.log("init")
-            this.loadCss("https://kelturio.github.io/th/style5.css")
+            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style.css")
             this.addPathsToRequire()
             require(["lodash", "sugar"], (lodash) => {
                 console.log("lodash, sugar ready", [this, lodash])
@@ -32,19 +32,19 @@
                 require(["particles"], () => {
                     console.log("particlesJS ready", [this, pJS])
                     //this.cfg.triangle = cfg
-                    require(["particleCfgTriangle1"], (cfg) => {
+                    require(["particleCfgTriangle"], (cfg) => {
                         console.log("particleCfgTriangle ready", [this, cfg])
                         this.cfg.triangle = cfg
                         akk.addDiv(document.body, "particleTriangle")
                         pJS("particleTriangle", this.cfg.triangle);
                     })
-                    require(["particleCfgCircle1"], (cfg) => {
+                    require(["particleCfgCircle"], (cfg) => {
                         console.log("particleCfgCircle ready", [this, cfg])
                         this.cfg.circle = cfg
                         akk.addDiv(document.body, "particleCircle")
                         pJS("particleCircle", this.cfg.triangle);
                     })
-                    require(["particleCfgStar1"], (cfg) => {
+                    require(["particleCfgStar"], (cfg) => {
                         console.log("particleCfgStar ready", [this, cfg])
                         this.cfg.star = cfg
                         akk.addDiv(document.body, "particleStar")
