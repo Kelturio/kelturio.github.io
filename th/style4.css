@@ -45,7 +45,7 @@ canvas {
 }
 
 /* ---- matrix ---- */
-#matrix {
+#matrixCanvas {
   position: relative;
   z-index: 10;
   background-color: #000000;

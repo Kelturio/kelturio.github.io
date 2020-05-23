@@ -10,12 +10,13 @@
         'ramda': ['https://cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min', ],
         'sugar': ['https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min', ],
         'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min', ],
+        'matrix': ['matrix2', ],
     }
 
     const akk = {
         init() {
             console.log("init")
-            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style3.css")
+            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style4.css")
             this.addPathsToRequire()
             require(["lodash", "sugar"], (lodash) => {
                 console.log("lodash, sugar ready", [this, lodash])
@@ -36,7 +37,7 @@
                     console.log("particlesJS ready", [this, particlesJS])
                     this.loadCfg("particleCfgTriangle", "triangle", "particleTriangle")
                     this.loadCfg("particleCfgCircle", "circle", "particleCircle")
-                    this.loadCfg("particleCfgStar", "star", "particleStar")                    
+                    this.loadCfg("particleCfgStar", "star", "particleStar")
                 })
             },
             loadCfg(file, key, id) {
@@ -51,7 +52,12 @@
         matrix: {
             init() {
                 console.log("matrix.init")
-                akk.addCanvas(document.body, "matrixCanvas")
+                require(["matrix"], (M) => {
+                    console.log("matrix ready", [this, M])
+                    this.M = M
+                    akk.addCanvas(document.body, "matrixCanvas")
+                    this.M.init()
+                })
             },
         },
         addPathsToRequire() {
