@@ -37,6 +37,7 @@ canvas {
   z-index: 0;
   background-color: #00000000;
 }
+
 /* ---- matrix ---- */
 #matrix {
   position: relative;
