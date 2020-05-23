@@ -29,7 +29,7 @@
             cfg: {},
             init() {
                 console.log("particle.init")
-                require(["particles"], (pJS) => {
+                require(["particles"], () => {
                     console.log("particlesJS ready", [this, pJS])
                     //this.cfg.triangle = cfg
                     require(["particleCfgTriangle1"], (cfg) => {
