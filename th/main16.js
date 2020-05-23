@@ -15,13 +15,14 @@
     const akk = {
         init() {
             console.log("init")
-            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style2.css")
+            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style3.css")
             this.addPathsToRequire()
             require(["lodash", "sugar"], (lodash) => {
                 console.log("lodash, sugar ready", [this, lodash])
                 this.addImg(document.body, "xkcd", "https://i.imgur.com/8rH20Pn.png")
                 this.addImg(document.body, "hackerman", "https://i.giphy.com/media/RyXVu4ZW454IM/giphy.gif")
                 this.particle.init()
+                this.matrix.init()
             })
         },
         cfg: {
@@ -33,27 +34,25 @@
                 console.log("particle.init")
                 require(["particles"], () => {
                     console.log("particlesJS ready", [this, particlesJS])
-                    //this.cfg.triangle = cfg
-                    require(["particleCfgTriangle"], (cfg) => {
-                        console.log("particleCfgTriangle ready", [this, cfg])
-                        this.cfg.triangle = cfg
-                        akk.addDiv(document.body, "particleTriangle")
-                        particlesJS("particleTriangle", this.cfg.triangle);
-                    })
-                    require(["particleCfgCircle"], (cfg) => {
-                        console.log("particleCfgCircle ready", [this, cfg])
-                        this.cfg.circle = cfg
-                        akk.addDiv(document.body, "particleCircle")
-                        particlesJS("particleCircle", this.cfg.circle);
-                    })
-                    require(["particleCfgStar"], (cfg) => {
-                        console.log("particleCfgStar ready", [this, cfg])
-                        this.cfg.star = cfg
-                        akk.addDiv(document.body, "particleStar")
-                        particlesJS("particleStar", this.cfg.star);
-                    })
+                    this.loadCfg("particleCfgTriangle", "triangle", "particleTriangle")
+                    this.loadCfg("particleCfgCircle", "circle", "particleCircle")
+                    this.loadCfg("particleCfgStar", "star", "particleStar")                    
                 })
-            }
+            },
+            loadCfg(file, key, id) {
+                require([file], (cfg) => {
+                    console.log(file + " ready", [this, cfg])
+                    this.cfg[key] = cfg
+                    akk.addDiv(document.body, id)
+                    particlesJS(id, this.cfg[key]);
+                })
+            },
+        },
+        matrix: {
+            init() {
+                console.log("matrix.init")
+                this.addCanvas(document.body, "matrixCanvas")
+            },
         },
         addPathsToRequire() {
             console.log('addPathsToRequire', this)
@@ -82,6 +81,12 @@
             img.id = id
             img.src = src
             target["appendChild"](img)
+        },
+        addCanvas(target, id) {
+            console.log('addImg', this)
+            var canvas = document.createElement("canvas")
+            canvas.id = id
+            target["appendChild"](canvas)
         },
     }
 

@@ -74,7 +74,7 @@ var M = {
 	codesCounter: 0,
 
 	init: function () {
-		M.c = document.getElementById( 'canvas' );
+		M.c = document.getElementById( 'matrixCanvas' );
 		M.ctx = M.c.getContext( '2d' );
 		M.c.width = M.WIDTH;
 		M.c.height = M.HEIGHT;
