@@ -30,25 +30,25 @@
             init() {
                 console.log("particle.init")
                 require(["particles"], () => {
-                    console.log("particlesJS ready", [this, pJS])
+                    console.log("particlesJS ready", [this, particlesJS])
                     //this.cfg.triangle = cfg
                     require(["particleCfgTriangle"], (cfg) => {
                         console.log("particleCfgTriangle ready", [this, cfg])
                         this.cfg.triangle = cfg
                         akk.addDiv(document.body, "particleTriangle")
-                        pJS("particleTriangle", this.cfg.triangle);
+                        particlesJS("particleTriangle", this.cfg.triangle);
                     })
                     require(["particleCfgCircle"], (cfg) => {
                         console.log("particleCfgCircle ready", [this, cfg])
                         this.cfg.circle = cfg
                         akk.addDiv(document.body, "particleCircle")
-                        pJS("particleCircle", this.cfg.triangle);
+                        particlesJS("particleCircle", this.cfg.circle);
                     })
                     require(["particleCfgStar"], (cfg) => {
                         console.log("particleCfgStar ready", [this, cfg])
                         this.cfg.star = cfg
                         akk.addDiv(document.body, "particleStar")
-                        pJS("particleStar", this.cfg.triangle);
+                        particlesJS("particleStar", this.cfg.star);
                     })
                 })
             }
