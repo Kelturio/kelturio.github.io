@@ -10,10 +10,10 @@ define(function() {
 				}
 			},
 			"color": {
-				"value": "#00ff00"
+				"value": "#00ffff"
 			},
 			"shape": {
-				"type": "triangle",
+				"type": "circle",
 				"stroke": {
 					"width": 0,
 					"color": "#000000"
@@ -49,10 +49,10 @@ define(function() {
 			},
 			"line_linked": {
 				"enable": true,
-				"distance": 150,
-				"color": "#008000",
+				"distance": 100,
+				"color": "#008080",
 				"opacity": 0.5,
-				"width": 1.3
+				"width": 1.2
 			},
 			"move": {
 				"enable": true,
@@ -60,7 +60,7 @@ define(function() {
 				"direction": "none",
 				"random": false,
 				"straight": false,
-				"out_mode": "out",
+				"out_mode": "bounce",
 				"bounce": false,
 				"attract": {
 					"enable": false,
@@ -74,7 +74,7 @@ define(function() {
 			"events": {
 				"onhover": {
 					"enable": true,
-					"mode": "grab"
+					"mode": "repulse"
 				},
 				"onclick": {
 					"enable": true,

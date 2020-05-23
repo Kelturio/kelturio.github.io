@@ -22,6 +22,16 @@
                 require(["particleCfgTriangle1"], (cfg) => {
                     console.log("particleCfgTriangle ready", [this, cfg])
                     this.cfg.triangle = cfg
+                    akk.addDiv(document.body, "particleTriangle")
+                    particlesJS("particleTriangle", this.cfg.triangle);
+                })
+                require(["particleCfgCircle1"], (cfg) => {
+                    console.log("particleCfgCircle ready", [this, cfg])
+                    this.cfg.circle = cfg
+                })
+                require(["particleCfgStar1"], (cfg) => {
+                    console.log("particleCfgStar ready", [this, cfg])
+                    this.cfg.star = cfg
                 })
             }
         },
@@ -38,6 +48,14 @@
             requirejs.config({
                 paths: this.cfg.paths,
             })
+        },
+        addDiv(target, id) {
+            console.log('addDiv', this)
+            var newDiv = document.createElement("div");
+            var t = document.createTextNode("This is a paragraph.");
+            newDiv.appendChild(t);
+            newDiv.id = id
+            target["appendChild"](newDiv);
         },
         startParticleAnim() {
             console.log('startParticleAnim', this)
