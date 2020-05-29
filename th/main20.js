@@ -10,7 +10,7 @@
         'ramda': ['https://cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min', ],
         'sugar': ['https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min', ],
         'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min', ],
-        'matrix': ['matrix2', ],
+        'matrix': ['matrix', ],
     }
 
     const akk = {
@@ -22,7 +22,7 @@
                 console.log("lodash, sugar ready", [this, lodash])
                 this.addImg(document.body, "xkcd", "https://i.imgur.com/8rH20Pn.png")
                 this.addImg(document.body, "hackerman", "https://i.giphy.com/media/RyXVu4ZW454IM/giphy.gif")
-                //this.particle.init()
+                this.particle.init()
                 this.matrix.init()
             })
         },

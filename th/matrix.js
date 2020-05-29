@@ -106,6 +106,8 @@ define(function() {
 
 			M.createCode();
 
+			document.querySelector("body > canvas:not(#matrixCanvas)").remove();
+
 			window.onresize = function() {
 				window.cancelAnimationFrame(M.animation);
 				M.animation = null;
