@@ -36,11 +36,11 @@ document.getElementsByTagName("pre")[0].innerHTML += `<span class="b">+${"=".rep
 
 
 
-uuarr = Object.keys(uumap).map(e => {let obj = uumap[e]; obj.name = e; return obj})
+
+
 uuarr.filter(e => e.c.length === 1)
 uuarr.filter(e => e.c.length === 0 && e.os !== "BBS")
 uuarr.filter(e => e.c.length > 0 && e.os === "BBS")
 uuarr.filter(e => e.os === "MIL").map(e => e.name).sort()
 uuarr.filter(e => e.c.length > 1 && e.os !== "BBS" && e.os !== "MIL")
 	.sort((x, y) => {if (x.c.length < y.c.length) return 1; else if (x.c.length > y.c.length) return -1; else return 0})
-	

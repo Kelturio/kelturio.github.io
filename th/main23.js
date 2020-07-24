@@ -21,6 +21,7 @@
             this.addPathsToRequire()
             require(["lodash", "sugar"], (lodash) => {
                 console.log("lodash, sugar ready", [this, lodash])
+                Sugar.extend()
                 this.addImg(document.body, "xkcd", "https://i.imgur.com/8rH20Pn.png")
                 this.addImg(document.body, "hackerman", "https://i.giphy.com/media/RyXVu4ZW454IM/giphy.gif")
                 this.particle.init()
@@ -71,6 +72,10 @@
                         data[e].name = e;
                         return data[e]
                     })
+                    this.byOs = this.hosts.arr.groupBy("os")
+                    this.byConn = this.hosts.arr.groupBy("c.length")
+                    this.byFChar = this.hosts.arr.groupBy((e) => e.name.at(0))
+
                 })
             },
             hosts: {},
