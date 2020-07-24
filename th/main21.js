@@ -11,6 +11,7 @@
         'sugar': ['https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min', ],
         'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min', ],
         'matrix': ['matrix', ],
+        'uumap': ['uumap', ],
     }
 
     const akk = {
@@ -57,6 +58,18 @@
                     this.M = M
                     akk.addCanvas(document.body, "matrixCanvas")
                     this.M.init()
+                })
+            },
+        },
+        uumap: {
+            init() {
+                console.log("uumap.init")
+                require(["uumap"], (data) => {
+                    console.log("uumap ready", [this, data])
+                    this.hosts = Object.keys(data).map(e => {
+                        data[e].name = e;
+                        return data[e]
+                    })
                 })
             },
         },
