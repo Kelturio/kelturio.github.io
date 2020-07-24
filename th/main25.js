@@ -12,6 +12,7 @@
         'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min', ],
         'matrix': ['matrix', ],
         'uumap': ['uumap', ],
+        'uumapHidden': ['uumapHidden', ],
     }
 
     const akk = {
@@ -66,26 +67,32 @@
             init() {
                 console.log("uumap.init")
                 require(["uumap"], (data) => {
-                    console.log("uumap ready", [])
-                    this.hosts.obj = data
-                    this.hosts.arr = Object.keys(data).map(e => {
-                        data[e].name = e;
-                        return data[e]
-                    }).sort((a, b) => {
-                        if (a.name < b.name) return -1
-                        if (a.name > b.name) return 1
-                        return 0
+                    require(["uumapHidden"], (hidden) => {
+                        console.log("uumap ready", [])
+                        this._hosts.obj = data
+                        this._hosts.hidden = hidden
+                        this.all = Object.keys(data).map(e => {
+                            data[e].name = e;
+                            return data[e]
+                        }).sort((a, b) => {
+                            if (a.name < b.name) return -1
+                            if (a.name > b.name) return 1
+                            return 0
+                        })
+                        this.byOs = this.all.groupBy("os")
+                        this.byConn = this.all.groupBy("c.length")
+                        this.byNameLen = this.all.groupBy("name.length")
+                        this.byFChar = this.all.groupBy((e) => e.name.at(0))
+                        this.hiddenDial = this.all.filter(e => e.c.length === 0 && e.os !== "BBS")
+                        console.dir(this)
                     })
-                    this.byOs = this.hosts.arr.groupBy("os")
-                    this.byConn = this.hosts.arr.groupBy("c.length")
-                    this.byNameLen = this.hosts.arr.groupBy("name.length")
-                    this.byFChar = this.hosts.arr.groupBy((e) => e.name.at(0))
-                    console.dir(this)
                 })
             },
-            hosts: {},
+            _hosts: {
+                "DO NOT OPEN THE OBJ TOO BIG": "DO NOT OPEN THE OBJ TOO BIG"
+            },
             getHost(name) {
-                return this.hosts.obj[name]
+                return this._hosts.obj[name]
             }
         },
         addPathsToRequire() {
