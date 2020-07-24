@@ -66,12 +66,17 @@
                 console.log("uumap.init")
                 require(["uumap"], (data) => {
                     console.log("uumap ready", [this, data])
-                    this.hosts = Object.keys(data).map(e => {
+                    this.hosts.obj = data
+                    this.hosts.arr = Object.keys(data).map(e => {
                         data[e].name = e;
                         return data[e]
                     })
                 })
             },
+            hosts: {},
+            getHost(name) {
+                return this.hosts.obj[name]
+            }
         },
         addPathsToRequire() {
             console.log('addPathsToRequire', this)
