@@ -66,16 +66,21 @@
             init() {
                 console.log("uumap.init")
                 require(["uumap"], (data) => {
-                    console.log("uumap ready", [this, data])
+                    console.log("uumap ready", [])
                     this.hosts.obj = data
                     this.hosts.arr = Object.keys(data).map(e => {
                         data[e].name = e;
                         return data[e]
+                    }).sort((a, b) => {
+                        if (a.name < b.name) return -1
+                        if (a.name > b.name) return 1
+                        return 0
                     })
                     this.byOs = this.hosts.arr.groupBy("os")
                     this.byConn = this.hosts.arr.groupBy("c.length")
+                    this.byNameLen = this.hosts.arr.groupBy("name.length")
                     this.byFChar = this.hosts.arr.groupBy((e) => e.name.at(0))
-
+                    console.dir(this)
                 })
             },
             hosts: {},
