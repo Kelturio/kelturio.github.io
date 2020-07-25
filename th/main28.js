@@ -65,6 +65,7 @@
         },
         uumap: {
             init() {
+                console.clear()
                 console.log("uumap.init")
                 require(["uumap"], (data) => {
                     require(["uumapHidden"], (hidden) => {
@@ -90,14 +91,14 @@
                         console.log('result = akk.uumap.all.filter(e => e.c.length > 5 && e.os === "BBS")')
                         console.info("mapping:")
                         console.log('akk.uumap.byOs.MIL.map("name")')
-                        console.log('mapped = result.map(e => `${e.c.length.toString().padLeft(4)} ${e.name.padRight(16)} ${e.os}`)')
+                        console.log('mapped = result.map(e => `${e.c.length.toString().padLeft(4)}  ${e.name.padRight(16)} ${e.os}`)')
                         console.info("printing the results:")
+                        akk.uumap.all.filter(e => e.c.length >= 135).map(e => `${e.c.length.toString().padLeft(4)}  ${e.name.padRight(16)} ${e.os}`).map(e => console.log(e))
                         console.log('mapped.map(e => console.log(e))')
                         console.info("printing a table:")
-                        console.table(akk.uumap.all.filter(e => e.c.length >= 135 && e.os !== "BBS")
-                        .map(e => ({name: e.name, conn: e.c.length, os: e.os})))
                         console.info("you can click the column headers to sort.")
                         console.log('console.table(result)')
+                        console.table(akk.uumap.all.filter(e => e.c.length >= 135).map(e => ({name: e.name, conn: e.c.length, os: e.os})))
                         console.info("sorting arrays with objects:")
                         console.log('result.sort((a, b) => b.c.length - a.c.length)')
                         console.log('result.sort((a, b) => {if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0;})')
