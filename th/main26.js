@@ -68,7 +68,7 @@
                 console.log("uumap.init")
                 require(["uumap"], (data) => {
                     require(["uumapHidden"], (hidden) => {
-                        console.log("uumap ready", [])
+                        console.log("uumap ready open the object below")
                         this._hosts.obj = data
                         this._hosts.hidden = hidden
                         this.all = Object.keys(data).map(e => {
@@ -85,11 +85,29 @@
                         this.byFChar = this.all.groupBy((e) => e.name.at(0))
                         this.hiddenDial = this.all.filter(e => e.c.length === 0 && e.os !== "BBS")
                         console.dir(this)
+                        console.log("filter querys could look like this:")
+                        console.log('result = akk.uumap.all.filter(e => e.c.length >= 135)')
+                        console.log('result = akk.uumap.all.filter(e => e.c.length > 5 && e.os === "BBS")')
+                        console.log("mapping:")
+                        console.log('akk.uumap.byOs.MIL.map("name")')
+                        console.log('mapped = result.map(e => `${e.c.length.toString().padLeft(4)} ${e.name.padRight(16)} ${e.os}`)')
+                        console.log("printing the results:")
+                        console.log('mapped.map(e => console.log(e))')
+                        console.log("printing a table:")
+                        console.table(akk.uumap.all.filter(e => e.c.length >= 135 && e.os !== "BBS")
+                        .map(e => ({name: e.name, conn: e.c.length, os: e.os})))
+                        console.log("you can click the column headers to sort.")
+                        console.log('console.table(result)')
+                        console.log("sorting arrays with objects:")
+                        console.log('result.sort((a, b) => b.c.length - a.c.length)')
+                        console.log('result.sort((a, b) => {if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0;})')
+                        console.log("just an example:")
+                        console.log('console.table([...akk.uumap.byConn[42], ...akk.uumap.all.shuffle().last(10), ...akk.uumap.hiddenDial.shuffle().last(10), ...akk.uumap.byOs.MIL.shuffle().last(10), ...akk.uumap.byNameLen[2].shuffle().last(10), ...akk.uumap.all.filter(e => "SECOS,OSES,ENCOM,RELIC,TEL/OS,WOPR".split(",").includes(e.os))].map(e => ({name: e.name, conn: e.c.length, os: e.os})).sort((a, b) => {if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0;}))')
                     })
                 })
             },
             _hosts: {
-                "DO NOT OPEN THE OBJ TOO BIG": "DO NOT OPEN THE OBJ TOO BIG"
+                "warning": "do not try to open the obj takes to long..."
             },
             getHost(name) {
                 return this._hosts.obj[name]
