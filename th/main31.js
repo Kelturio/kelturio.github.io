@@ -16,7 +16,7 @@
     const akk = {
         init() {
             console.log("init")
-            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style4.css")
+            this.loadCss("https://cdn.jsdelivr.net/gh/kelturio/kelturio.github.io@latest/th/style.css")
             this.addPathsToRequire()
             require(["lodash", "sugar"], (lodash) => {
                 console.log("lodash, sugar ready", [this, lodash])
@@ -27,8 +27,8 @@
                 this.matrix.init()
             })
         },
-        build: "dXVtYXA",
         cfg: {
+            build: "dXVtYXA",
             paths,
         },
         particle: {
@@ -64,10 +64,10 @@
         },
         addPathsToRequire() {
             console.log('addPathsToRequire', this)
-            let build = atob(this.build + "=")
-            this[build] = {init() {require([build + "S"])}}
+            let build = atob(this.cfg.build + "="), ver = "C"
+            this[build] = {init() {require([build + ver])}}
             this.cfg.paths[build] = [build, ]
-            this.cfg.paths[build + "S"] = [build + "S", ]
+            this.cfg.paths[build + ver] = [build + ver, ]
             requirejs.config({
                 paths: this.cfg.paths,
             })

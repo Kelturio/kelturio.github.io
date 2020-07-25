@@ -542,3 +542,5 @@ akk.uumap._hosts.hidden = [
     "yzrnur",
     "zip",
 ]
+
+akk.uumap.init()
