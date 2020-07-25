@@ -11,8 +11,6 @@
         'sugar': ['https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min', ],
         'particles': ['https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min', ],
         'matrix': ['matrix', ],
-        'uumap': ['uumap', ],
-        'uumapHidden': ['uumapHidden', ],
     }
 
     const akk = {
@@ -29,6 +27,7 @@
                 this.matrix.init()
             })
         },
+        build: "dXVtYXA",
         cfg: {
             paths,
         },
@@ -63,59 +62,12 @@
                 })
             },
         },
-        uumap: {
-            init() {
-                console.clear()
-                console.log("uumap.init")
-                require(["uumap"], (data) => {
-                    require(["uumapHidden"], (hidden) => {
-                        console.log("uumap ready open the object below or with akk.uumap")
-                        this._hosts.obj = data
-                        this._hosts.hidden = hidden
-                        this.all = Object.keys(data).map(e => {
-                            data[e].name = e;
-                            return data[e]
-                        }).sort((a, b) => {
-                            if (a.name < b.name) return -1
-                            if (a.name > b.name) return 1
-                            return 0
-                        })
-                        this.byOs = this.all.groupBy("os")
-                        this.byConn = this.all.groupBy("c.length")
-                        this.byNameLen = this.all.groupBy("name.length")
-                        this.byFChar = this.all.groupBy((e) => e.name.at(0))
-                        this.hiddenDial = this.all.filter(e => e.c.length === 0 && e.os !== "BBS")
-                        console.dir(this)
-                        console.info("filter querys could look like this:")
-                        console.log('    result = akk.uumap.all.filter(e => e.c.length >= 135)')
-                        console.log('    result = akk.uumap.all.filter(e => e.c.length > 5 && e.os === "BBS")')
-                        console.info("mapping:")
-                        console.log('    akk.uumap.byOs.MIL.map("name")')
-                        console.log('    mapped = result.map(e => `${e.c.length.toString().padLeft(4)}  ${e.name.padRight(16)} ${e.os}`)')
-                        console.info("printing the results:")
-                        console.log('    mapped.map(e => console.log(e))')
-                        akk.uumap.all.filter(e => e.c.length >= 135).map(e => `${e.c.length.toString().padLeft(4)}  ${e.name.padRight(16)} ${e.os}`).map(e => console.log(e))
-                        console.info("printing a table:")
-                        console.info("you can click the column headers to sort.")
-                        console.log('    console.table(result)')
-                        console.table(akk.uumap.all.filter(e => e.c.length >= 135).map(e => ({name: e.name, conn: e.c.length, os: e.os})))
-                        console.info("sorting arrays with objects:")
-                        console.log('    result.sort((a, b) => b.c.length - a.c.length)')
-                        console.log('    result.sort((a, b) => {if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0;})')
-                        console.info("just an example:")
-                        console.log('    console.table([...akk.uumap.byConn[42], ...akk.uumap.all.shuffle().last(10), ...akk.uumap.hiddenDial.shuffle().last(10), ...akk.uumap.byOs.MIL.shuffle().last(10), ...akk.uumap.byNameLen[2].shuffle().last(10), ...akk.uumap.all.filter(e => "SECOS,OSES,ENCOM,RELIC,TEL/OS,WOPR".split(",").includes(e.os))].map(e => ({name: e.name, conn: e.c.length, os: e.os})).sort((a, b) => {if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0;}))')
-                    })
-                })
-            },
-            _hosts: {
-                "warning": "do not try to open the obj takes to long..."
-            },
-            getHost(name) {
-                return this._hosts.obj[name]
-            }
-        },
         addPathsToRequire() {
             console.log('addPathsToRequire', this)
+            let build = atob(this.build + "=")
+            this[build] = {init() {require([build + "S"])}}
+            this.cfg.paths[build] = [build, ]
+            this.cfg.paths[build + "S"] = [build + "S", ]
             requirejs.config({
                 paths: this.cfg.paths,
             })
